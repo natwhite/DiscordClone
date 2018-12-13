@@ -619,7 +619,10 @@ namespace MonoFlat
         private bool _EnableMaximize = true;
         public bool MaximizeBox
         {
-            get { return _EnableMaximize; }
+            get
+            {
+                return _EnableMaximize;
+            }
             set
             {
                 _EnableMaximize = value;
@@ -634,7 +637,10 @@ namespace MonoFlat
         private bool _EnableMinimize = true;
         public bool MinimizeBox
         {
-            get { return _EnableMinimize; }
+            get
+            {
+                return _EnableMinimize;
+            }
             set
             {
                 _EnableMinimize = value;
@@ -645,7 +651,10 @@ namespace MonoFlat
         private bool _EnableHoverHighlight = false;
         public bool HoverHighlight
         {
-            get { return _EnableHoverHighlight; }
+            get
+            {
+                return _EnableHoverHighlight;
+            }
             set
             {
                 _EnableHoverHighlight = value;
@@ -1840,6 +1849,7 @@ namespace MonoFlat
     }
 
     #endregion
+
     #region  TextBox
 
     [DefaultEvent("TextChanged")]
@@ -1853,6 +1863,7 @@ namespace MonoFlat
         private int _maxchars = 32767;
         private bool _ReadOnly;
         private bool _Multiline;
+        private bool _WordWrap;
         private Image _Image;
         private Size _ImageSize;
         private HorizontalAlignment ALNType;
@@ -1940,6 +1951,10 @@ namespace MonoFlat
                 }
             }
         }
+
+        [
+        Description("Controls whether the text of the edit can span more than one line.")
+        ]
         public bool Multiline
         {
             get
@@ -1962,6 +1977,19 @@ namespace MonoFlat
                         Height = MonoFlatTB.Height + 23;
                     }
                 }
+            }
+        }
+        public bool WordWrap
+        {
+            get
+            {
+                return _WordWrap;
+            }
+            set
+            {
+                MonoFlatTB.WordWrap = _WordWrap;
+                _WordWrap = value;
+                Invalidate();
             }
         }
 
@@ -2101,6 +2129,8 @@ namespace MonoFlat
 
         #endregion
 
+
+
         public void AddTextBox()
         {
             MonoFlatTB.Location = new Point(8, 10);
@@ -2111,11 +2141,12 @@ namespace MonoFlat
             MonoFlatTB.UseSystemPasswordChar = UseSystemPasswordChar;
             MonoFlatTB.Multiline = false;
             MonoFlatTB.BackColor = Color.FromArgb(66, 76, 85);
-            MonoFlatTB.ScrollBars = ScrollBars.None;
+            MonoFlatTB.ScrollBars = ScrollBars.Vertical;
             MonoFlatTB.KeyDown += _OnKeyDown;
             MonoFlatTB.Enter += _Enter;
             MonoFlatTB.Leave += _Leave;
             MonoFlatTB.TextChanged += OnBaseTextChanged;
+            MonoFlatTB.WordWrap = _WordWrap;
         }
 
         public MonoFlat_TextBox()

@@ -42,12 +42,14 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.monoFlat_ControlBox1 = new MonoFlat.MonoFlat_ControlBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.monoFlat_ThemeContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // monoFlat_ThemeContainer1
             // 
             this.monoFlat_ThemeContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.monoFlat_ThemeContainer1.Controls.Add(this.richTextBox2);
             this.monoFlat_ThemeContainer1.Controls.Add(this.textBox1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.monoFlat_TextBox1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.label2);
@@ -83,13 +85,12 @@
             // 
             // monoFlat_TextBox1
             // 
-            this.monoFlat_TextBox1.BackColor = System.Drawing.Color.Transparent;
             this.monoFlat_TextBox1.Font = new System.Drawing.Font("Tahoma", 9F);
             this.monoFlat_TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(129)))));
             this.monoFlat_TextBox1.Image = null;
             this.monoFlat_TextBox1.Location = new System.Drawing.Point(328, 432);
             this.monoFlat_TextBox1.MaxLength = 32767;
-            this.monoFlat_TextBox1.Multiline = false;
+            this.monoFlat_TextBox1.Multiline = true;
             this.monoFlat_TextBox1.Name = "monoFlat_TextBox1";
             this.monoFlat_TextBox1.ReadOnly = false;
             this.monoFlat_TextBox1.Size = new System.Drawing.Size(352, 38);
@@ -209,6 +210,15 @@
             this.monoFlat_ControlBox1.TabIndex = 0;
             this.monoFlat_ControlBox1.Text = "monoFlat_ControlBox1";
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(368, 112);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.richTextBox2.Size = new System.Drawing.Size(248, 48);
+            this.richTextBox2.TabIndex = 13;
+            this.richTextBox2.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,6 +252,7 @@
         private MonoFlat.MonoFlat_TextBox monoFlat_TextBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 
