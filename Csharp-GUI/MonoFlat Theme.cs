@@ -855,6 +855,7 @@ namespace MonoFlat
     }
 
     #endregion
+
     #region  Button
 
     public class MonoFlat_Button : Control
@@ -875,6 +876,7 @@ namespace MonoFlat
         private Color _TextColor; // VBConversions Note: Initial value cannot be assigned here since it is non-static.  Assignment has been moved to the class constructors.
         private Color _MouseDownColor; //Color the button will be once clicked
         private ContentAlignment _ImageAlign = ContentAlignment.MiddleLeft;
+        private bool _EnableCircle;
 
         #endregion
         #region  Image Designer
@@ -981,6 +983,23 @@ namespace MonoFlat
                 }
 
                 _Image = value;
+                Invalidate();
+            }
+        }
+
+        [
+        Category("Appearance"),
+        Description("Determines whether the button appears as a circle or not.")
+        ]
+        public bool CircularStyle
+        {
+            get
+            {
+                return _EnableCircle;
+            }
+            set
+            {
+                _EnableCircle = value;
                 Invalidate();
             }
         }
@@ -1127,41 +1146,85 @@ namespace MonoFlat
             G.SmoothingMode = SmoothingMode.HighQuality;
             PointF ipt = ImageLocation(GetStringFormat(ImageAlign), Size, ImageSize);
 
-            switch (MouseState)
+            if (_EnableCircle == true)
             {
-                case 0:
-                    //Inactive
-                    G.FillPath(InactiveGB, Shape);
-                    // Fill button body with InactiveGB color gradient
-                    G.DrawPath(P1, Shape);
-                    // Draw button border [InactiveGB]
-                    if ((Image == null))
-                    {
-                        G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
-                    }
-                    else
-                    {
-                        G.DrawImage(_Image, ipt.X, ipt.Y, ImageSize.Width, ImageSize.Height);
-                        G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
-                    }
-                    break;
-                case 1:
-                    //Pressed
-                    G.FillPath(PressedGB, Shape);
-                    // Fill button body with PressedGB color gradient
-                    G.DrawPath(P3, Shape);
-                    // Draw button border [PressedGB]
+                switch (MouseState)
+                {
+                    case 0:
+                        //Inactive
+                        GraphicsPath grPath = new GraphicsPath();
+                        grPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
+                        this.Region = new System.Drawing.Region(grPath);
+                        // Fill button body with InactiveGB color gradient
+                        G.DrawArc(P1, 0, 0, ClientSize.Width, ClientSize.Height, 0, 360);
+                        // Draw button border [InactiveGB]
+                        if ((Image == null))
+                        {
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        else
+                        {
+                            G.DrawImage(_Image, ipt.X, ipt.Y, ImageSize.Width, ImageSize.Height);
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        break;
+                    case 1:
+                        //Pressed
+                        G.FillPath(PressedGB, Shape);
+                        // Fill button body with PressedGB color gradient
+                        G.DrawPath(P3, Shape);
+                        // Draw button border [PressedGB]
 
-                    if ((Image == null))
-                    {
-                        G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
-                    }
-                    else
-                    {
-                        G.DrawImage(_Image, ipt.X, ipt.Y, ImageSize.Width, ImageSize.Height);
-                        G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
-                    }
-                    break;
+                        if ((Image == null))
+                        {
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        else
+                        {
+                            G.DrawImage(_Image, ipt.X, ipt.Y, ImageSize.Width, ImageSize.Height);
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        break;
+                }
+            }
+            else
+            {
+                switch (MouseState)
+                {
+                    case 0:
+                        //Inactive
+                        G.FillPath(InactiveGB, Shape);
+                        // Fill button body with InactiveGB color gradient
+                        G.DrawPath(P1, Shape);
+                        // Draw button border [InactiveGB]
+                        if ((Image == null))
+                        {
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        else
+                        {
+                            G.DrawImage(_Image, ipt.X, ipt.Y, ImageSize.Width, ImageSize.Height);
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        break;
+                    case 1:
+                        //Pressed
+                        G.FillPath(PressedGB, Shape);
+                        // Fill button body with PressedGB color gradient
+                        G.DrawPath(P3, Shape);
+                        // Draw button border [PressedGB]
+
+                        if ((Image == null))
+                        {
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        else
+                        {
+                            G.DrawImage(_Image, ipt.X, ipt.Y, ImageSize.Width, ImageSize.Height);
+                            G.DrawString(Text, Font, new SolidBrush(ForeColor), R1, GetStringFormat(TextAlign));
+                        }
+                        break;
+                }
             }
             base.OnPaint(e);
         }
@@ -1785,6 +1848,7 @@ namespace MonoFlat
 
         #region  Variables
 
+        public Color _BackColor;
         public TextBox MonoFlatTB = new TextBox();
         private int _maxchars = 32767;
         private bool _ReadOnly;
@@ -1800,6 +1864,24 @@ namespace MonoFlat
         #endregion
         #region  Properties
 
+
+        public override Color BackColor
+        {
+            get
+            {
+                return this._BackColor;
+            }
+            set
+            {
+                this._BackColor = value;
+                this.Invalidate();
+            }
+        }
+
+        [
+        Category("Behavior"),
+        Description("Specifies the alignment of the text on the control.")
+        ]
         public HorizontalAlignment TextAlignment
         {
             get
@@ -1826,6 +1908,10 @@ namespace MonoFlat
             }
         }
 
+        [
+        Category("Behavior"),
+        Description("Indicates if the text in the edit control should appear as the default password character.")
+        ]
         public bool UseSystemPasswordChar
         {
             get
@@ -2041,9 +2127,9 @@ namespace MonoFlat
             Controls.Add(MonoFlatTB);
 
             P1 = new Pen(Color.FromArgb(32, 41, 50));
-            B1 = new SolidBrush(Color.FromArgb(66, 76, 85));
+            B1 = new SolidBrush(Color.FromArgb(75, 75, 81));
             BackColor = Color.Transparent;
-            ForeColor = Color.FromArgb(176, 183, 191);
+            ForeColor = Color.FromArgb(123,125,129);
 
             Text = null;
             Font = new Font("Tahoma", 11);
