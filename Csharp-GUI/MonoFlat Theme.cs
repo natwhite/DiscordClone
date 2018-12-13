@@ -1858,8 +1858,10 @@ namespace MonoFlat
 
         #region  Variables
 
-        public Color _BackColor;
+
         public TextBox MonoFlatTB = new TextBox();
+        private Color _BackColor;
+        private ScrollBars _ScrollBar;
         private int _maxchars = 32767;
         private bool _ReadOnly;
         private bool _Multiline;
@@ -1886,6 +1888,19 @@ namespace MonoFlat
             {
                 this._BackColor = value;
                 this.Invalidate();
+            }
+        }
+
+        public ScrollBars ScrollBar
+        {
+            get
+            {
+                return _ScrollBar;
+            }
+            set
+            {
+                _ScrollBar = value;
+                Invalidate();
             }
         }
 
@@ -1987,7 +2002,6 @@ namespace MonoFlat
             }
             set
             {
-                MonoFlatTB.WordWrap = _WordWrap;
                 _WordWrap = value;
                 Invalidate();
             }
@@ -2096,7 +2110,7 @@ namespace MonoFlat
             base.OnResize(e);
             if (_Multiline)
             {
-                MonoFlatTB.Height = Height - 23;
+                MonoFlatTB.Height = MonoFlatTB.Size.Height;
             }
             else
             {
@@ -2139,9 +2153,9 @@ namespace MonoFlat
             MonoFlatTB.TextAlign = HorizontalAlignment.Left;
             MonoFlatTB.Font = new Font("Tahoma", 11);
             MonoFlatTB.UseSystemPasswordChar = UseSystemPasswordChar;
-            MonoFlatTB.Multiline = false;
+            MonoFlatTB.Multiline = true;
             MonoFlatTB.BackColor = Color.FromArgb(66, 76, 85);
-            MonoFlatTB.ScrollBars = ScrollBars.Vertical;
+            MonoFlatTB.ScrollBars = _ScrollBar;
             MonoFlatTB.KeyDown += _OnKeyDown;
             MonoFlatTB.Enter += _Enter;
             MonoFlatTB.Leave += _Leave;

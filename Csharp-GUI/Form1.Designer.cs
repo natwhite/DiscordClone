@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.monoFlat_ThemeContainer1 = new MonoFlat.MonoFlat_ThemeContainer();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.monoFlat_TextBox1 = new MonoFlat.MonoFlat_TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.monoFlat_ControlBox1 = new MonoFlat.MonoFlat_ControlBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.monoFlat_ThemeContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -75,12 +75,22 @@
             this.monoFlat_ThemeContainer1.TabIndex = 0;
             this.monoFlat_ThemeContainer1.Click += new System.EventHandler(this.monoFlat_ThemeContainer1_Click);
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(368, 112);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.richTextBox2.Size = new System.Drawing.Size(248, 48);
+            this.richTextBox2.TabIndex = 13;
+            this.richTextBox2.Text = "";
+            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.HotTrack;
             this.textBox1.Location = new System.Drawing.Point(688, 400);
+            this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.Size = new System.Drawing.Size(209, 23);
             this.textBox1.TabIndex = 12;
             // 
             // monoFlat_TextBox1
@@ -88,16 +98,17 @@
             this.monoFlat_TextBox1.Font = new System.Drawing.Font("Tahoma", 9F);
             this.monoFlat_TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(129)))));
             this.monoFlat_TextBox1.Image = null;
-            this.monoFlat_TextBox1.Location = new System.Drawing.Point(328, 432);
+            this.monoFlat_TextBox1.Location = new System.Drawing.Point(324, 383);
             this.monoFlat_TextBox1.MaxLength = 32767;
             this.monoFlat_TextBox1.Multiline = true;
             this.monoFlat_TextBox1.Name = "monoFlat_TextBox1";
             this.monoFlat_TextBox1.ReadOnly = false;
-            this.monoFlat_TextBox1.Size = new System.Drawing.Size(352, 38);
+            this.monoFlat_TextBox1.Size = new System.Drawing.Size(352, 79);
             this.monoFlat_TextBox1.TabIndex = 11;
             this.monoFlat_TextBox1.Text = "     Message";
-            this.monoFlat_TextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
+            this.monoFlat_TextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.monoFlat_TextBox1.UseSystemPasswordChar = false;
+            this.monoFlat_TextBox1.WordWrap = false;
             // 
             // label2
             // 
@@ -209,15 +220,6 @@
             this.monoFlat_ControlBox1.Size = new System.Drawing.Size(86, 22);
             this.monoFlat_ControlBox1.TabIndex = 0;
             this.monoFlat_ControlBox1.Text = "monoFlat_ControlBox1";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(368, 112);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox2.Size = new System.Drawing.Size(248, 48);
-            this.richTextBox2.TabIndex = 13;
-            this.richTextBox2.Text = "";
             // 
             // Form1
             // 
