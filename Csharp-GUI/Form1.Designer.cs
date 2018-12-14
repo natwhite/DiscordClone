@@ -68,6 +68,7 @@
             this.monoFlat_ThemeContainer1.StartPosition = System.Windows.Forms.FormStartPosition.WindowsDefaultLocation;
             this.monoFlat_ThemeContainer1.TabIndex = 0;
             this.monoFlat_ThemeContainer1.Click += new System.EventHandler(this.monoFlat_ThemeContainer1_Click);
+            this.monoFlat_ThemeContainer1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.monoFlat_TextBox1_KeyPress);
             // 
             // monoFlat_TextBox1
             // 
@@ -86,6 +87,7 @@
             this.monoFlat_TextBox1.UseSystemPasswordChar = false;
             this.monoFlat_TextBox1.WordWrap = true;
             this.monoFlat_TextBox1.TextChanged += new System.EventHandler(this.monoFlat_TextBox1_TextChanged);
+            this.monoFlat_TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.monoFlat_TextBox1_KeyPress);
             // 
             // richTextBox2
             // 
@@ -181,7 +183,7 @@
             // monoFlat_ControlBox1
             // 
             this.monoFlat_ControlBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.monoFlat_ControlBox1.Font = new System.Drawing.Font("Bell MT", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.monoFlat_ControlBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.monoFlat_ControlBox1.HoverHighlight = true;
             this.monoFlat_ControlBox1.Location = new System.Drawing.Point(856, 0);
             this.monoFlat_ControlBox1.MaximizeBox = true;

@@ -53,13 +53,16 @@ namespace Csharp_GUI
 
         private void monoFlat_TextBox1_TextChanged(object sender, EventArgs e)
         {
-            Console.Out.WriteLine("text changed");
-            Csharp_GUI.Program.sendMessage("Testing");
+            Csharp_GUI.Program.sendMessage(monoFlat_TextBox1.Text);
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void monoFlat_TextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }
