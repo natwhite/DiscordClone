@@ -121,11 +121,7 @@ void requestLoop()
 						break;
 					}
 
-					// send the message back to the client with "Server: " appended to the front to let the
-					// client user know that this message came from the server
-					*message = "Server: " + *message;
-
-					clientSock->write_some(buffer(*message, bufferSize));
+					relayMessages(message);
 
 					cout << "MessageLog: " << *message << endl;
 				}
@@ -136,6 +132,11 @@ void requestLoop()
 
 		boost::this_thread::sleep(boost::posix_time::millisec((int)sleepLength::lng));
 	}
+}
+
+void relayMessages(string_ptr message) {
+	for (auto& clientSock : *clientList)
+		clientSock->write_some(buffer(*message, bufferSize));
 }
 
 // This function checks if the client message is "exit"

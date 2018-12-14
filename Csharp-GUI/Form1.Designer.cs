@@ -40,12 +40,14 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.monoFlat_ControlBox1 = new MonoFlat.MonoFlat_ControlBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.monoFlat_ThemeContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // monoFlat_ThemeContainer1
             // 
             this.monoFlat_ThemeContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
+            this.monoFlat_ThemeContainer1.Controls.Add(this.button1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.monoFlat_TextBox1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.richTextBox2);
             this.monoFlat_ThemeContainer1.Controls.Add(this.label2);
@@ -193,6 +195,19 @@
             this.monoFlat_ControlBox1.TabIndex = 0;
             this.monoFlat_ControlBox1.Text = "monoFlat_ControlBox1";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(455, 471);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Send";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_ClickAsync);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -224,6 +239,7 @@
         private MonoFlat.MonoFlat_TextBox monoFlat_TextBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

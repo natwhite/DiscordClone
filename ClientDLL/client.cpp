@@ -15,9 +15,12 @@ namespace DiscordCopy {
 		return a + b;
 	}
 
+	static socket_ptr localSock;
+	static string inputMessage;
+
 	// This function listens on the socket for messages from the server and updates the message queue
 	// when a message is received from the server
-	void inboundLoop(socket_ptr sock)
+	void inboundLoop()
 	{
 		int bytesRead = 0;
 		char readBuffer[1024] = { 0 };
@@ -25,10 +28,10 @@ namespace DiscordCopy {
 		// loop forever
 		for (;;)
 		{
-			if (sock->available())
+			if (localSock->available())
 			{
 				// read the message from the server
-				bytesRead = sock->read_some(buffer(readBuffer, INPUTSIZE));
+				bytesRead = localSock->read_some(buffer(readBuffer, INPUTSIZE));
 				string_ptr message(new string(readBuffer, bytesRead));
 
 				// add message to the message queue
@@ -36,69 +39,35 @@ namespace DiscordCopy {
 			}
 
 			// sleep to avoid thread conflicts
-			boost::this_thread::sleep(boost::posix_time::millisec(1000));
+			boost::this_thread::sleep(boost::posix_time::millisec(200));
 		}
 	}
-
-	static socket_ptr localSock;
-	static string inputMessage;
 
 	void sendMessage(const char* message) {
 		inputMessage = string(message) + '\n';
 		localSock->write_some(buffer(inputMessage, INPUTSIZE));
 	}
 
-	// This function takes input from the user and sends the given string to the server
-	void writeLoop(socket_ptr sock)
-	{
-		//char inputBuffer[INPUTSIZE] = { 0 };
+	void loadMessage(char* strBldr, int size) {
 
-		// loop forever
-		for (;;)
+		// if a there is a message in the queue, print it to the screen
+		if (!messageQueue->empty())
 		{
-			// get input from the user
-			//cin.getline(inputBuffer, INPUTSIZE);
-			//inputMessage = (string)inputBuffer + '\n';
+			const char* nextMsg = (*(messageQueue->front())).c_str();
 
-			// if the user types a message, send it to the server
-			if (!inputMessage.empty())
-			{
-				sock->write_some(buffer(inputMessage, INPUTSIZE));
+			for (size_t i = 0; i < size; i++) {
+				strBldr[i] = nextMsg[i];
 			}
 
-			// if the user types "exit", exit the program
-			if (inputMessage.find("exit") != string::npos)
-			{
-				exit(1);
-			}
-
-			// reset the input string and buffer to prepare for the next message
-			//inputMessage.clear();
-			//memset(inputBuffer, 0, INPUTSIZE);
+			// remove message from the queue once it has been printed
+			messageQueue->pop();
 		}
+		
+		//// pause the thread to avoid thread conflicts
+		//boost::this_thread::sleep(boost::posix_time::millisec(1000));
 	}
 
-	// This function displays messages from the message queue
-	void displayLoop(socket_ptr sock)
-	{
-		// loop forever
-		for (;;)
-		{
-			// if a there is a message in the queue, print it to the screen
-			if (!messageQueue->empty())
-			{
-				cout << "\n" + *(messageQueue->front()) + "\n: ";
-
-				// remove message from the queue once it has been printed
-				messageQueue->pop();
-			}
-
-			// pause the thread to avoid thread conflicts
-			boost::this_thread::sleep(boost::posix_time::millisec(1000));
-		}
-	}
-
-	int initializeConnection(const char* connection) {
+	void initializeConnection(const char* connection) {
 		string ipAddress = string(connection);
 		tcp::endpoint ep(ip::address::from_string(ipAddress), 8001); // connect to a server on the localhost at port 8001
 																	   // constant to be used as the input size
@@ -110,24 +79,16 @@ namespace DiscordCopy {
 
 			// connect to the server
 			sock->connect(ep);
-			//cout << "Welcome to client!\nTypeMessages for the server!\nType \"exit\" to quit\n: ";
 
 			// create threads
-			threads.create_thread(boost::bind(displayLoop, sock));
-			threads.create_thread(boost::bind(inboundLoop, sock));
-			//sendMessage(connection);
+			//threads.create_thread(boost::bind(displayLoop, sock));
+			threads.create_thread(boost::bind(inboundLoop));
 			//threads.create_thread(boost::bind(writeLoop, sock));
 
-			//threads.join_all();
 		}
 		catch (const std::exception& e)
 		{
 			cerr << "Error: " << e.what() << endl;
 		}
-
-		//puts("Press any key to continue...");
-		//getc(stdin);
-		////return EXIT_SUCCESS;
-		return 1;
 	}
 }

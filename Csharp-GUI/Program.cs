@@ -13,38 +13,10 @@ namespace Csharp_GUI
         [STAThread]
         static void Main()
         {
-            testCode();
-            ConnectToServer();
+            initializeConnection("127.0.0.1");
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-        }
-
-        static void log(object text)
-        {
-            System.Diagnostics.Debug.WriteLine(text);
-        }
-
-        static void testCode()
-        {
-            //log(get_char_code(' '));
-            log(StringToEscapeSequence("log(\"hehe\");"));
-        }
-
-        static string StringToEscapeSequence(string input)
-        {
-            string output = "";
-            foreach(char c in input.ToCharArray())
-            {
-                output += GetEscapeSequence(c);
-            }
-
-            return output;
-        }
-         
-        static string GetEscapeSequence(char c)
-        {
-            return "\\u" + ((int)c).ToString("X4");
         }
 
         const string dllLocation = "ClientDLL.dll";
@@ -58,12 +30,7 @@ namespace Csharp_GUI
         [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
         public static extern void sendMessage(string message);
 
-        static void ConnectToServer()
-        {
-            string ipAddress = "172.16.2.144";
-            //string message = "testing";
-            initializeConnection(ipAddress);
-            //sendMessage(message);
-        }
+        [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int loadMessage(System.Text.StringBuilder rntStr, int size);
     }
 }
