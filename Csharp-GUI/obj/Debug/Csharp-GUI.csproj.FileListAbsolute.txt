@@ -18,3 +18,13 @@ C:\Users\rossh\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csp
 C:\Users\rossh\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csproj.CoreCompileInputs.cache
 C:\Users\rossh\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.exe
 C:\Users\rossh\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.pdb
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\bin\Debug\Csharp-GUI.exe.config
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\bin\Debug\Csharp-GUI.exe
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\bin\Debug\Csharp-GUI.pdb
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csprojAssemblyReference.cache
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp_GUI.Form1.resources
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp_GUI.Properties.Resources.resources
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csproj.GenerateResource.cache
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csproj.CoreCompileInputs.cache
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.exe
+S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.pdb

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+// Allow managed code to call unmanaged functions that are implemented in a DLL
+using System.Runtime.InteropServices;
 
 namespace Csharp_GUI
 {
@@ -16,10 +14,7 @@ namespace Csharp_GUI
         static void Main()
         {
             testCode();
-            /* This is a commented line of code
-             *Internet protocals must start with one of the following codes:
-             *\u002F\u0020\u006C\u006F\u0067\u0028\u0022\u0068\u0065\u0068\u0065\u0022\u0029\u003B\u0020\u002F\u002A 
-             */
+            ConnectToServer();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
@@ -50,6 +45,31 @@ namespace Csharp_GUI
         static string GetEscapeSequence(char c)
         {
             return "\\u" + ((int)c).ToString("X4");
+        }
+
+
+        const string dllLocation = "S:/Users/Koios/Documents/GitHub/DiscordClone/Debug/ClientDLL.dll";
+
+        [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
+        public static extern double Add(double a, double b);
+
+        [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
+        public static extern int initializeConnection(char[] connection);
+
+        [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
+        public static extern void sendMessage(char[] message);
+
+        static void ConnectToServer()
+        {
+            string ipAddress = "127.0.0.1";
+            ipAddress.
+            string message = "testing";
+            Console.Out.WriteLine(Add(1.3d, 1.684d));
+            Console.Out.WriteLine(initializeConnection(ipAddress.ToCharArray()));
+            sendMessage(message.ToCharArray());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
         }
 
     }
