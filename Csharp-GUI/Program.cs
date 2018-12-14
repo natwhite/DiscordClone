@@ -47,7 +47,7 @@ namespace Csharp_GUI
             return "\\u" + ((int)c).ToString("X4");
         }
 
-        const string dllLocation = "S:/Users/Koios/Documents/GitHub/DiscordClone/Debug/ClientDLL.dll";
+        const string dllLocation = "ClientDLL.dll";
 
         [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
         public static extern double Add(double a, double b);
@@ -60,6 +60,8 @@ namespace Csharp_GUI
 
         static void ConnectToServer()
         {
+            Console.Out.WriteLine(dllLocation);
+            Console.Out.WriteLine(Application.StartupPath.Remove(Application.StartupPath.LastIndexOf("\\"), Application.StartupPath.Length - Application.StartupPath.LastIndexOf("\\")));
             string ipAddress = "172.16.2.144";
             string message = "testing";
             Console.Out.WriteLine(Add(1.3d, 1.684d));
