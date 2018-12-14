@@ -53,19 +53,21 @@ namespace Csharp_GUI
         public static extern double Add(double a, double b);
 
         [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int initializeConnection(char[] connection);
+        public static extern int initializeConnection(string connection);
 
         [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
-        public static extern void sendMessage(char[] message);
+        public static extern void sendMessage(string message);
 
         static void ConnectToServer()
         {
-            string ipAddress = "127.0.0.1";
+            string ipAddress = "172.16.2.144";
             string message = "testing";
             Console.Out.WriteLine(Add(1.3d, 1.684d));
-            Console.Out.WriteLine(initializeConnection(ipAddress.ToCharArray()));
-            sendMessage(message.ToCharArray());
+            Console.Out.WriteLine(initializeConnection(ipAddress));
+            sendMessage(message);
+            sendMessage(message);
+            sendMessage(message);
+            sendMessage(message);
         }
-
     }
 }

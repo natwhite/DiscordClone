@@ -43,25 +43,9 @@ namespace DiscordCopy {
 	static socket_ptr localSock;
 	static string inputMessage;
 
-	void sendMessage(char* message) {
-		inputMessage = string(message);
-
-			// if the user types a message, send it to the server
-		//if (!inputMessage.empty())
-		//{
-
-		//	// if the user types "exit", exit the program
-		//	if (inputMessage.find("exit") != string::npos)
-		//	{
-		//		exit(1);
-		//	}
-
-		//	sock->write_some(buffer(inputMessage, INPUTSIZE));
-		//}
+	void sendMessage(const char* message) {
+		inputMessage = string(message) + '\n';
 		localSock->write_some(buffer(inputMessage, INPUTSIZE));
-
-		// reset the input string and buffer to prepare for the next message
-		//inputMessage.clear();
 	}
 
 	// This function takes input from the user and sends the given string to the server
@@ -114,9 +98,9 @@ namespace DiscordCopy {
 		}
 	}
 
-	int initializeConnection(char* connection) {
+	int initializeConnection(const char* connection) {
 		string ipAddress = string(connection);
-		tcp::endpoint ep(ip::address::from_string("127.0.0.1"), 8001); // connect to a server on the localhost at port 8001
+		tcp::endpoint ep(ip::address::from_string(ipAddress), 8001); // connect to a server on the localhost at port 8001
 																	   // constant to be used as the input size
 
 		try {

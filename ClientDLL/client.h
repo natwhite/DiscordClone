@@ -26,8 +26,8 @@ typedef boost::shared_ptr<queue<string_ptr>> messageQueue_ptr;
 
 namespace DiscordCopy {
 	extern "C" { __declspec(dllexport) double Add(double a, double b); }
-	extern "C" { __declspec(dllexport) int initializeConnection(char* connection); }
-	extern "C" { __declspec(dllexport) void sendMessage(char* message); }
+	extern "C" { __declspec(dllexport) int initializeConnection(const char* connection); }
+	extern "C" { __declspec(dllexport) void sendMessage(const char* message); }
 	extern "C" { __declspec(dllexport) void displayLoop(socket_ptr sock); }
 	extern "C" { __declspec(dllexport) void inboundLoop(socket_ptr sock); }
 	extern "C" { __declspec(dllexport) void writeLoop(socket_ptr sock); }
