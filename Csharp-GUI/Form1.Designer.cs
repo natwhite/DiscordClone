@@ -30,34 +30,28 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.monoFlat_ThemeContainer1 = new MonoFlat.MonoFlat_ThemeContainer();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.monoFlat_TextBox1 = new MonoFlat.MonoFlat_TextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.monoFlat_Button2 = new MonoFlat.MonoFlat_Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.nsButton1 = new NSButton();
-            this.button1 = new System.Windows.Forms.Button();
             this.monoFlat_Button1 = new MonoFlat.MonoFlat_Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.monoFlat_ControlBox1 = new MonoFlat.MonoFlat_ControlBox();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.monoFlat_ThemeContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // monoFlat_ThemeContainer1
             // 
             this.monoFlat_ThemeContainer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(34)))), ((int)(((byte)(37)))));
-            this.monoFlat_ThemeContainer1.Controls.Add(this.richTextBox2);
-            this.monoFlat_ThemeContainer1.Controls.Add(this.textBox1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.monoFlat_TextBox1);
+            this.monoFlat_ThemeContainer1.Controls.Add(this.richTextBox2);
             this.monoFlat_ThemeContainer1.Controls.Add(this.label2);
             this.monoFlat_ThemeContainer1.Controls.Add(this.monoFlat_Button2);
             this.monoFlat_ThemeContainer1.Controls.Add(this.panel1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.label1);
-            this.monoFlat_ThemeContainer1.Controls.Add(this.nsButton1);
-            this.monoFlat_ThemeContainer1.Controls.Add(this.button1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.monoFlat_Button1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.richTextBox1);
             this.monoFlat_ThemeContainer1.Controls.Add(this.listView1);
@@ -75,29 +69,35 @@
             this.monoFlat_ThemeContainer1.TabIndex = 0;
             this.monoFlat_ThemeContainer1.Click += new System.EventHandler(this.monoFlat_ThemeContainer1_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.HotTrack;
-            this.textBox1.Location = new System.Drawing.Point(688, 400);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 12;
-            // 
             // monoFlat_TextBox1
             // 
             this.monoFlat_TextBox1.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.monoFlat_TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(129)))));
+            this.monoFlat_TextBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(187)))), ((int)(((byte)(195)))));
             this.monoFlat_TextBox1.Image = null;
-            this.monoFlat_TextBox1.Location = new System.Drawing.Point(328, 432);
+            this.monoFlat_TextBox1.Lines = new string[0];
+            this.monoFlat_TextBox1.Location = new System.Drawing.Point(328, 392);
             this.monoFlat_TextBox1.MaxLength = 32767;
             this.monoFlat_TextBox1.Multiline = true;
             this.monoFlat_TextBox1.Name = "monoFlat_TextBox1";
             this.monoFlat_TextBox1.ReadOnly = false;
-            this.monoFlat_TextBox1.Size = new System.Drawing.Size(352, 38);
+            this.monoFlat_TextBox1.Size = new System.Drawing.Size(352, 78);
             this.monoFlat_TextBox1.TabIndex = 11;
-            this.monoFlat_TextBox1.Text = "     Message";
             this.monoFlat_TextBox1.TextAlignment = System.Windows.Forms.HorizontalAlignment.Left;
             this.monoFlat_TextBox1.UseSystemPasswordChar = false;
+            this.monoFlat_TextBox1.WordWrap = true;
+            this.monoFlat_TextBox1.TextChanged += new System.EventHandler(this.monoFlat_TextBox1_TextChanged);
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
+            this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.Location = new System.Drawing.Point(328, 72);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.richTextBox2.Size = new System.Drawing.Size(368, 320);
+            this.richTextBox2.TabIndex = 13;
+            this.richTextBox2.Text = "";
+            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox2_TextChanged);
             // 
             // label2
             // 
@@ -142,25 +142,6 @@
             this.label1.Size = new System.Drawing.Size(69, 21);
             this.label1.TabIndex = 7;
             this.label1.Text = "Activity";
-            // 
-            // nsButton1
-            // 
-            this.nsButton1.Location = new System.Drawing.Point(456, 336);
-            this.nsButton1.Name = "nsButton1";
-            this.nsButton1.Size = new System.Drawing.Size(75, 23);
-            this.nsButton1.TabIndex = 6;
-            this.nsButton1.Text = "nsButton1";
-            // 
-            // button1
-            // 
-            this.button1.ForeColor = System.Drawing.Color.Red;
-            this.button1.Location = new System.Drawing.Point(552, 280);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "button1";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // monoFlat_Button1
             // 
@@ -210,15 +191,6 @@
             this.monoFlat_ControlBox1.TabIndex = 0;
             this.monoFlat_ControlBox1.Text = "monoFlat_ControlBox1";
             // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(368, 112);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richTextBox2.Size = new System.Drawing.Size(248, 48);
-            this.richTextBox2.TabIndex = 13;
-            this.richTextBox2.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -243,15 +215,12 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private MonoFlat.MonoFlat_Button monoFlat_Button1;
-        private System.Windows.Forms.Button button1;
-        private NSButton nsButton1;
         private MonoFlat.MonoFlat_ThemeContainer monoFlat_ThemeContainer1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private MonoFlat.MonoFlat_Button monoFlat_Button2;
         private MonoFlat.MonoFlat_TextBox monoFlat_TextBox1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }

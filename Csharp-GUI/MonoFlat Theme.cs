@@ -11,13 +11,16 @@
 
 //|------DO-NOT-REMOVE------|
 //
-// Creator: HazelDev
+// Original Creator: HazelDev
 // Site   : HazelDev.com
+// Ongoing Modifications by Ross Hall
 // Created: 20.Sep.2014
 // Changed: 24.Jan.2015
 // Version: 1.2.0
 //
 //|------DO-NOT-REMOVE------|
+
+
 
 
 //TODO: this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea; to here
@@ -1859,6 +1862,7 @@ namespace MonoFlat
         #region  Variables
 
         public Color _BackColor;
+        public string[] _Lines;
         public TextBox MonoFlatTB = new TextBox();
         private int _maxchars = 32767;
         private bool _ReadOnly;
@@ -1866,7 +1870,7 @@ namespace MonoFlat
         private bool _WordWrap;
         private Image _Image;
         private Size _ImageSize;
-        private HorizontalAlignment ALNType;
+        private HorizontalAlignment _AlignmentType;
         private bool isPasswordMasked = false;
         private Pen P1;
         private SolidBrush B1;
@@ -1884,8 +1888,8 @@ namespace MonoFlat
             }
             set
             {
-                this._BackColor = value;
-                this.Invalidate();
+                _BackColor = MonoFlatTB.BackColor;
+                Invalidate();
             }
         }
 
@@ -1897,11 +1901,11 @@ namespace MonoFlat
         {
             get
             {
-                return ALNType;
+                return _AlignmentType;
             }
             set
             {
-                ALNType = value;
+                _AlignmentType = value;
                 Invalidate();
             }
         }
@@ -1967,18 +1971,25 @@ namespace MonoFlat
                 if (MonoFlatTB != null)
                 {
                     MonoFlatTB.Multiline = value;
-
-                    if (value)
-                    {
-                        MonoFlatTB.Height = Height - 23;
-                    }
-                    else
-                    {
-                        Height = MonoFlatTB.Height + 23;
-                    }
                 }
             }
         }
+
+        public string[] Lines
+        {
+            get
+            {
+                return _Lines;
+            }
+            set
+            {
+                _Lines = MonoFlatTB.Lines;
+            }
+        }
+
+        [
+        Description("Controls whether the text of the edit wrap.")
+        ]
         public bool WordWrap
         {
             get
@@ -1987,7 +1998,7 @@ namespace MonoFlat
             }
             set
             {
-                MonoFlatTB.WordWrap = _WordWrap;
+
                 _WordWrap = value;
                 Invalidate();
             }
@@ -2094,7 +2105,7 @@ namespace MonoFlat
         protected override void OnResize(System.EventArgs e)
         {
             base.OnResize(e);
-            if (_Multiline)
+            if (Multiline)
             {
                 MonoFlatTB.Height = Height - 23;
             }
@@ -2129,10 +2140,9 @@ namespace MonoFlat
 
         #endregion
 
-
-
         public void AddTextBox()
         {
+            MonoFlatTB.Lines = _Lines;
             MonoFlatTB.Location = new Point(8, 10);
             MonoFlatTB.Text = String.Empty;
             MonoFlatTB.BorderStyle = BorderStyle.None;
@@ -2140,13 +2150,12 @@ namespace MonoFlat
             MonoFlatTB.Font = new Font("Tahoma", 11);
             MonoFlatTB.UseSystemPasswordChar = UseSystemPasswordChar;
             MonoFlatTB.Multiline = false;
-            MonoFlatTB.BackColor = Color.FromArgb(66, 76, 85);
+            MonoFlatTB.BackColor = Color.FromArgb(54, 57, 63);
             MonoFlatTB.ScrollBars = ScrollBars.Vertical;
             MonoFlatTB.KeyDown += _OnKeyDown;
             MonoFlatTB.Enter += _Enter;
             MonoFlatTB.Leave += _Leave;
             MonoFlatTB.TextChanged += OnBaseTextChanged;
-            MonoFlatTB.WordWrap = _WordWrap;
         }
 
         public MonoFlat_TextBox()
@@ -2159,7 +2168,7 @@ namespace MonoFlat
 
             P1 = new Pen(Color.FromArgb(32, 41, 50));
             B1 = new SolidBrush(Color.FromArgb(75, 75, 81));
-            BackColor = Color.Transparent;
+            BackColor = Color.FromArgb(54, 57, 63);
             ForeColor = Color.FromArgb(123,125,129);
 
             Text = null;
@@ -2188,8 +2197,11 @@ namespace MonoFlat
 
             MonoFlatTB.TextAlign = TextAlignment;
             MonoFlatTB.UseSystemPasswordChar = UseSystemPasswordChar;
+            MonoFlatTB.Multiline = Multiline;
+            MonoFlatTB.WordWrap = WordWrap;
+           // MonoFlatTB.Lines = Lines;
 
-            G.Clear(Color.Transparent);
+            G.Clear(BackColor);
 
             G.FillPath(B1, Shape);
             G.DrawPath(P1, Shape);
