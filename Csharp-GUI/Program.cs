@@ -41,12 +41,11 @@ namespace Csharp_GUI
 
             return output;
         }
-
+         
         static string GetEscapeSequence(char c)
         {
             return "\\u" + ((int)c).ToString("X4");
         }
-
 
         const string dllLocation = "S:/Users/Koios/Documents/GitHub/DiscordClone/Debug/ClientDLL.dll";
 
@@ -62,14 +61,10 @@ namespace Csharp_GUI
         static void ConnectToServer()
         {
             string ipAddress = "127.0.0.1";
-            ipAddress.
             string message = "testing";
             Console.Out.WriteLine(Add(1.3d, 1.684d));
             Console.Out.WriteLine(initializeConnection(ipAddress.ToCharArray()));
             sendMessage(message.ToCharArray());
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
         }
 
     }
