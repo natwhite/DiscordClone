@@ -53,8 +53,8 @@ namespace Csharp_GUI
 
         private void monoFlat_TextBox1_TextChanged(object sender, EventArgs e)
         {
-
-
+            Console.Out.WriteLine("text changed");
+            Csharp_GUI.Program.sendMessage("Testing");
         }
 
         private void richTextBox2_TextChanged(object sender, EventArgs e)

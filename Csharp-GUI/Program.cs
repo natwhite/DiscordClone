@@ -60,16 +60,10 @@ namespace Csharp_GUI
 
         static void ConnectToServer()
         {
-            Console.Out.WriteLine(dllLocation);
-            Console.Out.WriteLine(Application.StartupPath.Remove(Application.StartupPath.LastIndexOf("\\"), Application.StartupPath.Length - Application.StartupPath.LastIndexOf("\\")));
             string ipAddress = "172.16.2.144";
-            string message = "testing";
-            Console.Out.WriteLine(Add(1.3d, 1.684d));
-            Console.Out.WriteLine(initializeConnection(ipAddress));
-            sendMessage(message);
-            sendMessage(message);
-            sendMessage(message);
-            sendMessage(message);
+            //string message = "testing";
+            initializeConnection(ipAddress);
+            //sendMessage(message);
         }
     }
 }
