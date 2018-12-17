@@ -11,9 +11,10 @@ namespace Csharp_GUI
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            initializeConnection("127.0.0.1");
+            //initializeConnection("127.0.0.1");
+            initializeConnection(args[0]);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
@@ -31,6 +32,6 @@ namespace Csharp_GUI
         public static extern void sendMessage(string message);
 
         [DllImport(dllLocation, CallingConvention = CallingConvention.Cdecl)]
-        public static extern int loadMessage(System.Text.StringBuilder rntStr, int size);
+        public static extern void loadMessage(System.Text.StringBuilder rntStr, int size);
     }
 }

@@ -28,3 +28,6 @@ S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csp
 S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.csproj.CoreCompileInputs.cache
 S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.exe
 S:\Users\Koios\Documents\GitHub\DiscordClone\Csharp-GUI\obj\Debug\Csharp-GUI.pdb
+S:\Users\Koios\Documents\GitHub\DiscordClone\Debug\Csharp-GUI.exe.config
+S:\Users\Koios\Documents\GitHub\DiscordClone\Debug\Csharp-GUI.exe
+S:\Users\Koios\Documents\GitHub\DiscordClone\Debug\Csharp-GUI.pdb

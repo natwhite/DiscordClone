@@ -22,18 +22,19 @@ using namespace boost::asio::ip;
 // typedefs to make the code easier to read
 typedef boost::shared_ptr<tcp::socket> socket_ptr;
 typedef boost::shared_ptr<string> string_ptr;
-typedef map<socket_ptr, string_ptr> clientMap;
-typedef boost::shared_ptr<clientMap> clientMap_ptr;
 typedef boost::shared_ptr<list<socket_ptr>> clientList_ptr;
+typedef boost::shared_ptr<list<pair<socket_ptr, int>>> ClientIndex_ptr;
 
 // Create the service, acceptor, mutex, and clientList requied for the program to function
 io_service service;
 tcp::acceptor acceptor(service, tcp::endpoint(tcp::v4(), 8001));
 boost::mutex mtx;
 clientList_ptr clientList(new list <socket_ptr>);
+ClientIndex_ptr ClientIndex(new list<pair<socket_ptr, int>>);
 
 // constant for use as a buffer size
 const int bufferSize = 1024;
+int clientNumber = 0;
 
 // enum to store sleep lengths 
 enum sleepLength
@@ -43,10 +44,10 @@ enum sleepLength
 };
 
 // Function prototypes
-bool clientSentExit(string_ptr);
-void disconnectClient(socket_ptr);
+void disconnectClient(pair<socket_ptr, int> client);
 void acceptorLoop();
 void requestLoop();
+void relayMessages(string* message);
 
 // This function creates the threads that will communicate with the client
 int main()
@@ -79,14 +80,16 @@ void acceptorLoop()
 
 		acceptor.accept(*clientSock);
 
-		cout << "New client joined. ";
+		cout << "New client joined.";
+
+		pair<socket_ptr, int> nextClient = pair<socket_ptr, int>(clientSock, clientNumber++);
 
 		// lock the mutex to ensure this is the only thread changing the lient list
 		mtx.lock();
-		clientList->emplace_back(clientSock);
+		ClientIndex->emplace_back(nextClient);
 		mtx.unlock();
 
-		cout << clientList->size() << " total clients" << endl;
+		cout << ClientIndex->size() << " total clients" << endl;
 	}
 }
 
@@ -98,32 +101,34 @@ void requestLoop()
 	{
 		// if there are clients connected, scan the client list until a message is received, 
 		//then return that message to the client
-		if (!clientList->empty())
+		if (!ClientIndex->empty())
 		{
 			// lock the mutex to insure that no other threads interfere 
 			mtx.lock();
 			// check each client in the client list
-			for (auto& clientSock : *clientList)
+			for (auto& client : *ClientIndex)
 			{
-				if (clientSock->available())
+				if (client.first->available())
 				{
 					char readBuffer[bufferSize] = { 0 };
 
 					// read the message from the client
-					int bytesRead = clientSock->read_some(buffer(readBuffer, bufferSize));
+					int bytesRead = client.first->read_some(buffer(readBuffer, bufferSize));
 
 					string_ptr message(new string(readBuffer, bytesRead));
 
 					// if the message was "exit", disconnect the client from the server
-					if (clientSentExit(message))
+					if (message->find("exit") != string::npos)
 					{
-						disconnectClient(clientSock);
+						disconnectClient(client);
 						break;
 					}
 
-					relayMessages(message);
+					string* taggedMessage = (new string(to_string(client.second) + " : " + *message));
 
-					cout << "MessageLog: " << *message << endl;
+					relayMessages(taggedMessage);
+
+					cout << *taggedMessage << endl;
 				}
 			}
 
@@ -134,36 +139,23 @@ void requestLoop()
 	}
 }
 
-void relayMessages(string_ptr message) {
-	for (auto& clientSock : *clientList)
-		clientSock->write_some(buffer(*message, bufferSize));
-}
-
-// This function checks if the client message is "exit"
-bool clientSentExit(string_ptr message)
-{
-	if (message->find("exit") != string::npos)
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+void relayMessages(string* message) {
+	for (auto& client : *ClientIndex)
+		client.first->write_some(buffer(*message, bufferSize));
 }
 
 // This function disconnects the client from the server and updates the client list
-void disconnectClient(socket_ptr clientSock)
+void disconnectClient(pair<socket_ptr, int> client)
 {
 	// store the position of the client on the client list
-	auto position = find(clientList->begin(), clientList->end(), clientSock);
+	auto position = find(ClientIndex->begin(), ClientIndex->end(), client);
 
 	// shutdown and close the client socket
-	clientSock->shutdown(tcp::socket::shutdown_both);
-	clientSock->close();
+	client.first->shutdown(tcp::socket::shutdown_both);
+	client.first->close();
 
 	// remove the client from the client list
-	clientList->erase(position);
+	ClientIndex->erase(position);
 
 	// display that a client disconnected and the new number of connected clients on the server
 	cout << "Client Disconnected! " << clientList->size() << " total clients" << endl;

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.monoFlat_ThemeContainer1 = new MonoFlat.MonoFlat_ThemeContainer();
+            this.button1 = new System.Windows.Forms.Button();
             this.monoFlat_TextBox1 = new MonoFlat.MonoFlat_TextBox();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -40,7 +41,6 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.monoFlat_ControlBox1 = new MonoFlat.MonoFlat_ControlBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.monoFlat_ThemeContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,19 @@
             this.monoFlat_ThemeContainer1.Click += new System.EventHandler(this.monoFlat_ThemeContainer1_Click);
             this.monoFlat_ThemeContainer1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.monoFlat_TextBox1_KeyPress);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(455, 471);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Send";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_ClickAsync);
+            // 
             // monoFlat_TextBox1
             // 
             this.monoFlat_TextBox1.Font = new System.Drawing.Font("Tahoma", 9F);
@@ -95,8 +108,10 @@
             // 
             this.richTextBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(57)))), ((int)(((byte)(63)))));
             this.richTextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(174)))), ((int)(((byte)(187)))), ((int)(((byte)(195)))));
             this.richTextBox2.Location = new System.Drawing.Point(328, 72);
             this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
             this.richTextBox2.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.richTextBox2.Size = new System.Drawing.Size(368, 320);
             this.richTextBox2.TabIndex = 13;
@@ -194,19 +209,6 @@
             this.monoFlat_ControlBox1.Size = new System.Drawing.Size(86, 22);
             this.monoFlat_ControlBox1.TabIndex = 0;
             this.monoFlat_ControlBox1.Text = "monoFlat_ControlBox1";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(455, 471);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Send";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_ClickAsync);
             // 
             // Form1
             // 
